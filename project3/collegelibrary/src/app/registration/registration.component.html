@@ -1,0 +1,21 @@
+<!-- <input type="text" #myinput>
+<button (click)="onsubmit(myinput.value)">submit</button>
+{{myinput.value}}
+<input type="text" [(ngModel)]="name">
+{{name}} -->
+
+<form (ngSubmit)="submit()"[formGroup]="loginform">
+    <input type="text" name="name" [(ngModel)]="student.Name"formControlName="Name">
+    <small *ngIf="loginform.get('Name')?.hasError('required')&& loginform.get('Name')?.touched">This field is required</small>
+    <small *ngIf="loginform.get('Name')?.hasError('maxLength')&& loginform.get('Name')?.touched">enter valid name</small>
+    <small *ngIf="loginform.get('Name')?.hasError('minLength')&& loginform.get('Name')?.touched">enter valid name</small>
+
+    <input type="email" name="email" [(ngModel)]="student.Email"formControlName="Email">
+    <small *ngIf="loginform.get('Email')?.hasError('required')&& loginform.get('Email')?.touched">This field is required</small>
+
+    <input type="password" name="password" [(ngModel)]="student.Password"formControlName="Password">
+    <small *ngIf="loginform.get('Password')?.hasError('required')&& loginform.get('Password')?.touched">This field is required</small>
+    <small *ngIf="loginform.get('Password')?.hasError('maxLength')&& loginform.get('Password')?.touched">maximum 8 characters required</small>
+    <small *ngIf="loginform.get('Password')?.hasError('minLength')&& loginform.get('Password')?.touched">minimum characters required</small>
+     <button type="submit">submit</button> 
+</form>
